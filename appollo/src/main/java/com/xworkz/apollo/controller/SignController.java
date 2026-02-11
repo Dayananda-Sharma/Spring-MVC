@@ -21,7 +21,7 @@ public class SignController {
         boolean isValidation = signService.detailsRetrive(name,number);
 
         if (isValidation) {
-            return "signInsuccessful";
+            return "login";
         } else {
             return "signfailed";
         }
