@@ -13,6 +13,7 @@ public class WebConfiguration {
         System.out.println("this is web WebConfiguration class");
     }@Bean
     public ViewResolver viewResolver(){
+        System.out.println("this is method");
         return new InternalResourceViewResolver("/",".jsp");
     }
 
