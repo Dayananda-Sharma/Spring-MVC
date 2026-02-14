@@ -16,6 +16,7 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
+        System.out.println("getServletConfigClasses method");
         return new Class[]{WebConfiguration.class};
     }
 
