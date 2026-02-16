@@ -10,13 +10,12 @@ import javax.annotation.PostConstruct;
 public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer implements WebMvcConfigurer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        System.out.println("this is getRootConfigClasses method");
+
         return null;
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        System.out.println("getServletConfigClasses method");
         return new Class[]{WebConfiguration.class};
     }
 
@@ -29,8 +28,5 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-    @PostConstruct
-    public void init(){
-        System.out.println("this is inti method");
-    }
+
 }

@@ -11,9 +11,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class WebConfiguration {
     public WebConfiguration(){
         System.out.println("this is web WebConfiguration class");
-    }@Bean
+
+    }
+    @Bean
     public ViewResolver viewResolver(){
-        System.out.println("this is method");
+
         return new InternalResourceViewResolver("/",".jsp");
     }
 
