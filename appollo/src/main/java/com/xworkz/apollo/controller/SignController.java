@@ -4,6 +4,7 @@ import com.xworkz.apollo.service.SignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,7 +15,7 @@ public class SignController {
     @Autowired
     SignService signService;
 
-    @GetMapping("/signIn")   // fixed spelling also
+    @PostMapping("/signIn")   
     public String signIn(@RequestParam String name,
                          @RequestParam Integer number) {
 
@@ -23,7 +24,7 @@ public class SignController {
         if (isValidation) {
             return "login";
         } else {
-            return "signfailed";
+            return "reject";
         }
     }
 }

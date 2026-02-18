@@ -5,6 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-<p>login successful</p>
+<p>data saved</p>
 </body>
 </html>
