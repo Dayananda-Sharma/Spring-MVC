@@ -11,6 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "money_tab")
+@NamedQuery(name = "prize" ,query = "select e  from PrizeEntity e ")
 public class PrizeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

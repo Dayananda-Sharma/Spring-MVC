@@ -7,7 +7,7 @@
         body {
             margin: 0;
             height: 100vh;
-            background: linear-gradient(135deg, #74ebd5, #ACB6E5); /* page background */
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -62,7 +62,40 @@
         button:hover {
             background-color: #43a047;
         }
+
+        .read-btn {
+            background-color: #2196F3;
+        }
+
+        .read-btn:hover {
+            background-color: #1e88e5;
+        }
     </style>
+
+    <script>
+        function validateForm() {
+            let name = document.forms["moneyForm"]["userName"].value.trim();
+            let number = document.forms["moneyForm"]["number"].value.trim();
+            let location = document.forms["moneyForm"]["location"].value.trim();
+
+            if (name.length < 3) {
+                alert("Name must be at least 3 characters");
+                return false;
+            }
+
+            if (!/^[0-9]{10}$/.test(number)) {
+                alert("Number must be exactly 10 digits");
+                return false;
+            }
+
+            if (location.length < 3) {
+                alert("Location must be at least 3 characters");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -73,11 +106,17 @@
     <div class="msg-success">${successful}</div>
     <div class="msg-error">${invalidData}</div>
 
-    <form action="money" method="get">
+    <!-- Submit Form -->
+    <form name="moneyForm" action="money" method="get" onsubmit="return validateForm()">
         <input type="text" placeholder="Enter your name" name="userName">
         <input type="text" placeholder="Enter your number" name="number">
         <input type="text" placeholder="Location" name="location">
         <button type="submit">Submit</button>
+    </form>
+
+    <!-- Read All Form -->
+    <form action="readAll" method="get">
+        <button type="submit" class="read-btn">Read All</button>
     </form>
 </div>
 

@@ -3,10 +3,9 @@ package com.xworkz.prizemoney.repo;
 import com.xworkz.prizemoney.entity.PrizeEntity;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
 
 @Repository
 public class MoneyRepoImpl implements MoneyRepo {
@@ -31,5 +30,29 @@ public class MoneyRepoImpl implements MoneyRepo {
             entityManager.close();
         }
     }
+
+    @Override
+    public List<PrizeEntity> getData() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("money");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+            Query query = entityManager.createNamedQuery("prize");
+            List<PrizeEntity> resultList = (List<PrizeEntity>) query.getResultList();
+            System.out.println("repository==="+resultList);
+            return resultList;
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+        return null;
+
+    }
+
 
 }

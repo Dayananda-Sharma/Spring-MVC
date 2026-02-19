@@ -10,16 +10,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/")
 public class PrizeMoney {
+
     @Autowired
     Prize prize;
     public PrizeMoney(){
         System.out.println("this is controller");
     }
+
+
     @GetMapping("money")
     public String money(PrizeDto prizeDto ,Model model){
+
         System.out.println("this is controller"+prizeDto);
          boolean register =prize.validation(prizeDto);
         if (register){
@@ -28,5 +34,16 @@ public class PrizeMoney {
             model.addAttribute("invalidData","Enter valid data...!");
         }
         return "index";
+    }
+
+
+
+    @GetMapping("readAll")
+    public String readAll(Model model){
+
+        List<PrizeDto> prizeDtos = prize.allData();
+model.addAttribute("prizeDtos",prizeDtos);
+        System.out.println("readall"+prizeDtos);
+        return "readAll";
     }
 }
