@@ -1,33 +1,41 @@
 package com.xworkz.ssp.repo;
 
 import com.xworkz.ssp.entity.SspEntity;
+import com.xworkz.ssp.repo.SspRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 
 @Repository
-public class SspRepoImpl implements SspRepo{
+public class SspRepoImpl implements SspRepo {
+
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
 
     @Override
     public void insertData(SspEntity sspEntity) {
-        System.out.println("repo"+sspEntity);
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("money");
+
+        System.out.println("Repo : " + sspEntity);
+
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = null;
+
         try {
-            EntityTransaction transaction = entityManager.getTransaction();
+            transaction = entityManager.getTransaction();
             transaction.begin();
 
             entityManager.persist(sspEntity);
-            transaction.commit();
 
-        }catch (Exception e){
+            transaction.commit();
+            System.out.println("Data inserted successfully ✅");
+
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
-        }finally {
-            entityManagerFactory.close();
+        } finally {
             entityManager.close();
         }
     }
