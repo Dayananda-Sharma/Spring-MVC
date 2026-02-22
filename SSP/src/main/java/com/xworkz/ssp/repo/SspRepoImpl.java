@@ -5,38 +5,64 @@ import com.xworkz.ssp.repo.SspRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
+import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
 
 @Repository
 public class SspRepoImpl implements SspRepo {
 
-    @Autowired
-    private EntityManagerFactory entityManagerFactory;
+
 
     @Override
     public void insertData(SspEntity sspEntity) {
-
         System.out.println("Repo : " + sspEntity);
 
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ssp");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = null;
+
 
         try {
-            transaction = entityManager.getTransaction();
+            EntityTransaction transaction = entityManager.getTransaction();
+
             transaction.begin();
 
             entityManager.persist(sspEntity);
-
             transaction.commit();
-            System.out.println("Data inserted successfully ✅");
+
+            System.out.println("Data inserted successfully");
 
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
             entityManager.close();
+            entityManagerFactory.close();
         }
+    }
+
+    @Override
+    public List<SspEntity> getData() {
+        System.out.println("ServiceEntity");
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ssp");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+
+            Query query = entityManager.createNamedQuery("ssp");
+            List<SspEntity> resultList = (List<SspEntity>)query.getResultList();
+            System.out.println("repo:"+resultList);
+            return resultList;
+
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
+        finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+        return null;
     }
 }

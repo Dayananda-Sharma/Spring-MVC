@@ -107,7 +107,7 @@
     <div class="msg-error">${invalidData}</div>
 
     <!-- Submit Form -->
-    <form name="moneyForm" action="money" method="get" onsubmit="return validateForm()">
+    <form name="moneyForm" action="ssp" method="get" onsubmit="return validateForm()">
         <input type="text" placeholder="Enter your name" name="userName">
         <input type="text" placeholder="Enter your number" name="number">
         <input type="text" placeholder="Location" name="location">

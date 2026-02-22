@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@NamedQuery(name = "ssp", query = "select e from SspEntity e")
 public class SspEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

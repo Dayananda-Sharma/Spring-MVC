@@ -5,6 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-<p>Data stored</p>
+<p>${sspDtos}</p>
 </body>
 </html>
