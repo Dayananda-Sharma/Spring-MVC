@@ -4,6 +4,7 @@ import com.xworkz.yuvanidhi.dto.YuvaDto;
 import com.xworkz.yuvanidhi.entity.YuvaEntity;
 import com.xworkz.yuvanidhi.repo.YuvaRepo;
 import com.xworkz.yuvanidhi.repo.YuvaRepoImpl;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +29,7 @@ public class YuvaImpl implements Yuva {
                 && yuvaDto.getLocation() != null && yuvaDto.getLocation().length() >= 4) {
 
             YuvaEntity yuvaEntity = new YuvaEntity();
-            yuvaEntity.setUserName(yuvaDto.getUserName());
-            yuvaEntity.setNumber(yuvaDto.getNumber());
-            yuvaEntity.setLocation(yuvaDto.getLocation());
+        BeanUtils.copyProperties(yuvaDto,yuvaEntity);
 
             yuvaRepo.insertData(yuvaEntity);
 
@@ -49,9 +48,8 @@ public class YuvaImpl implements Yuva {
 
             yuvaEntities.forEach(allEntities->{
                 YuvaDto yuvaDto=new YuvaDto();
-                yuvaDto.setUserName(allEntities.getUserName());
-                yuvaDto.setNumber(allEntities.getNumber());
-                yuvaDto.setLocation(allEntities.getLocation());
+
+            BeanUtils.copyProperties(allEntities,yuvaDto);
 
                 yuvaDtos.add(yuvaDto);
             });

@@ -18,7 +18,7 @@
     <th>location</th>
  </tr>
 
- <c:forEach items="${yuvaDtos}" var="singleDto">
+ <c:forEach items="${nspDtos}" var="singleDto">
     <tr>
     <td>${singleDto.userName}</td>
         <td>${singleDto.number}</td>
