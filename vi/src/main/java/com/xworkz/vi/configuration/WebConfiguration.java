@@ -36,7 +36,7 @@ public class WebConfiguration {
 
     }
 
-    @Bean
+    
     public DataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
 
@@ -49,7 +49,7 @@ public class WebConfiguration {
 
     }
 
-    @Bean
+
     public Properties properties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto","update");

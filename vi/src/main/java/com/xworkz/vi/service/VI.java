@@ -5,7 +5,14 @@ import com.xworkz.vi.dto.ViDto;
 import java.util.List;
 
 public interface VI {
-    boolean validation(ViDto viDto);
+    String validation(ViDto viDto);
 
     List<ViDto> getData();
+
+   ViDto getEmailBasedOnService(String gmail);
+
+   ViDto getNumberBasedOnService(String number);
+
+   ViDto GetIdBasedOnService(Integer id);
+
 }

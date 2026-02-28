@@ -134,17 +134,18 @@ tr:hover{
             <th>Number</th>
             <th>Gmail</th>
             <th>Location</th>
+            <th>Update</th>
         </tr>
 
         <c:forEach items="${data}" var="singleDto">
             <tr>
-
                 <td>${singleDto.name}</td>
                 <td>${singleDto.age}</td>
                 <td>${singleDto.gender}</td>
                 <td>${singleDto.number}</td>
                 <td>${singleDto.gmail}</td>
                 <td>${singleDto.location}</td>
+                <td><a href="getData?id=${singleDto.id}">Update</a></td>
             </tr>
         </c:forEach>
     </table>

@@ -6,7 +6,13 @@ import com.xworkz.vi.entity.ViEntity;
 import java.util.List;
 
 public interface ViRepo {
-    void insertData(ViEntity viEntity);
+    boolean insertData(ViEntity viEntity);
 
     List<ViEntity> AllData();
+
+    ViEntity getGmailValidation(String gmail);
+
+    ViEntity getNumberValidation(String number);
+
+    ViEntity GetIdValidation(Integer id);
 }

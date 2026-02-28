@@ -163,8 +163,9 @@ button:hover{
 
 <div class="form-box">
     <h2>Hello World!</h2>
- <div class="msg-success">${successful}</div>
-    <div class="msg-error">${invalidData}</div>
+ <p style="color:green">${successful}</p>
+    <p style="color:red">${errorMsg}</p>
+
 
     <form action="index" method="post">
 

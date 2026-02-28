@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,14 +24,21 @@ public class ViController {
         System.out.println("this is controller class");
     }
     @PostMapping("index")
-    public String index(ViDto viDto, Model model){
-        boolean validation = vi.validation(viDto);
-        if (validation){
-            model.addAttribute("successful","Register successful!!!...");
+    public String index(ViDto viDto, Model model) {
+        String validation = vi.validation(viDto);
+        if (validation.equalsIgnoreCase("register successfully")){
+            model.addAttribute("successful",validation);
+            return "index";
+        } else if (validation.equalsIgnoreCase("not register")) {
+            model.addAttribute("errorMsg",validation);
+            return "index";
+
         }else {
-            model.addAttribute("invalidData","Enter Valid Data ");
+            model.addAttribute("errorMsg",validation);
+            return "index";
         }
-        return "index";
+
+
     }
     @GetMapping("readAll")
     public String readAll(Model model){
@@ -39,5 +47,17 @@ public class ViController {
         System.out.println("readAll"+data);
 
         return "readAll";
+    }
+
+    @GetMapping("getData")
+    public String Update(@RequestParam("id") Integer id, Model model){
+        ViDto viDto = vi.GetIdBasedOnService(id);
+        if (viDto!=null){
+         model.addAttribute("dto",viDto);
+            return "Update";
+
+        }
+
+        return "index";
     }
 }
