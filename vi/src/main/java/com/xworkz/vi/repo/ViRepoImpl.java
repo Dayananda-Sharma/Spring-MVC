@@ -15,6 +15,7 @@ public class ViRepoImpl implements ViRepo{
 EntityManagerFactory entityManagerFactory;
     @Override
     public boolean insertData(ViEntity viEntity) {
+        System.out.println("repo"+ viEntity);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             EntityTransaction transaction = entityManager.getTransaction();
