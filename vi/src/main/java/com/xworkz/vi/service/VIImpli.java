@@ -18,6 +18,7 @@ public class VIImpli implements VI {
 
     @Override
     public String validation(ViDto viDto) {
+        System.out.println("service"+viDto);
         if (viDto != null && viDto.getName() != null && viDto.getName().length() >= 3
                 && viDto.getName().matches("^[A-Za-z]+$")
 
