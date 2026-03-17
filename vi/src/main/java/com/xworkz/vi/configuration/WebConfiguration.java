@@ -39,7 +39,7 @@ public class WebConfiguration {
     
     public DataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-
+        System.out.println("DB connection in configuration class ");
         driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/customers_db");
         driverManagerDataSource.setUsername("root");
